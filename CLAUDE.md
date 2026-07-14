@@ -152,6 +152,18 @@ main reason content generation belongs in a project rather than in isolated chat
 
 ---
 
+## Git workflow
+- When Sang says **"commit/push"** (or similar), it almost always means he's wrapping up the
+  session (logging off, going to bed) and wants everything backed up to GitHub so he can
+  pick it up from another device. Treat it as routine end-of-session housekeeping — no need
+  to probe for why each time. Still follow the normal safe-commit discipline (check status/
+  diff, stage named files, write a real commit message) and push transparently.
+- Git identity on this machine is already configured (`user.name "Sang"`,
+  `user.email macarthur1123@gmail.com`), so an "Author identity unknown" error shouldn't
+  recur — if it does, it means a *different* machine/environment, not this one.
+
+---
+
 ## What to do at the start of a session
 1. Read `houses-of-venice.md` and `design-rationale.md` if you haven't this session.
 2. Ask what we're working on: **design refinement**, **content generation**, or
