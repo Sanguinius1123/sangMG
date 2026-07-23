@@ -1,7 +1,8 @@
 # Houses of Venice — Design Document
 
 *A megagame for 40–60 players, all-day format (~10am–5pm).*
-*Working draft. Last updated during design session 2.*
+*Working draft. Last updated during design session 3 (resources, the East, Ships, monument
+upkeep, commons materials).*
 
 ---
 
@@ -82,15 +83,23 @@ compelling gamble. Always ask: what's the path back to more renown from this spe
 
 ## 4. Economy
 
-### 4.1 Resources — keep the count low ✅
-Target: a house holds no more than a couple dozen tokens across ~a dozen kinds.
+### 4.1 Resources ✅ — see `content/resources.md` for the full roster
+Superseded by session 3's resource-generation pass: the original "~a dozen kinds, ~5 chains"
+target was deliberately relaxed in favor of richness (variety-bonus texture on Foods,
+Textiles, Furnishings), then **aggressively trimmed** back down wherever two items would
+have behaved identically (see `content/resources.md` §0 for the merge list — Meat, Wild
+Game, Rare Catch, Bullion). Every remaining item earns a distinct mechanical job; nothing
+survives purely for flavor.
 
-- **Food = one universal token.** ✅ Fuel, not flavor — don't split into wheat/rye/fish.
-  Base resource AND the engine base for everything.
-- **~5 processing chains**, each from a distinct raw good to a distinct market category.
-  🔶 Working set (tune later): grapes→wine (Alcohol), flax→cloth (Clothing),
-  olives→oil (Furnishings/Goods), gems→jewelry (Luxury), + one more (glass, or a
-  luxury food). Plus bread & beer as basic cheap processed goods for the People (§4.5).
+- **Market categories** ✅ (renamed/reorganized from the original list): Foods, Alcohol,
+  Luxury Foods, Textiles (was Clothing), Precious/Mined (was Luxury Goods), Furnishings,
+  Entertainment (settled: no raw good feeds this, Project/service-only). Full item-by-
+  category roster, sourcing, and the gathering/processing rules (including the three
+  distinct commons-material scarcity mechanics for Timber/Stone/Clay) live in
+  `content/resources.md`.
+- **Only Bread and Beer are direct-donation eligible** ✅ — donation-eligibility is attached
+  to those two specific goods, not a whole category (Beer moved to Alcohol but kept its
+  basic-good status; its Renown now floats with Alcohol's price instead of Foods').
 
 ### 4.2 Estates ✅
 Estates are the production engine and the engine-building layer.
@@ -130,9 +139,13 @@ Estates are the production engine and the engine-building layer.
   leverage ("nice weaveries — shame if nobody sold you grain this turn").
 
 ### 4.4 The Market — self-service floating price tracks ✅ (the economic heart)
-Each market **category** (Foods, Clothing, Furnishings, Alcohol, Entertainment, Luxury
-Goods, Luxury Foods) has a physical **price ladder** (e.g. 1–10 ducats), marker starting
-at a baseline (~5).
+Each market **category** (Foods, Alcohol, Luxury Foods, Textiles, Precious/Mined,
+Furnishings, Entertainment — renamed/reorganized in session 3, see §4.1 and
+`content/resources.md`) has a physical **price ladder** (e.g. 1–10 ducats), marker starting
+at a baseline (~5). **Sell-only** — there is no symmetric "buy from the market"; a good you
+don't produce has to come from another player (§4.5) or Foreign Merchants (§4.6), never an
+impersonal bank purchase. This is deliberate: it's what keeps the incomplete-production-split
+(§4.2) actually forcing trade instead of being routed around.
 
 - **To sell:** hand over the good, take the current marked price from the bank, slide the
   marker **down one step** yourself. Next seller gets less.
@@ -153,6 +166,14 @@ ducats," done.
 A printed board with fixed buy/sell rates (e.g. foreigners buy grain at 2, sell spice at
 8). No live Control person needed; Control only touches it when an event shifts rates.
 Acts as a guaranteed-but-unattractive floor/ceiling so nobody is ever truly stuck.
+
+- **Northern trade** ✅ (session 3): this backstop isn't only flavored as Levantine — Amber,
+  Furs, and Cider are Northern-trade goods (the historical Amber Road terminated at Venice;
+  the Fondaco dei Tedeschi was Venice's real German-merchant trading house), bought here at
+  the same fixed rate. Doesn't need its own mechanic the way the East does (§6.3) — one
+  backstop, two flavors of origin. The one exception is **Bullion** (former Gold/Silver/
+  Copper): sourced from an actual ownable, auctioned Northern Mine estate rather than the
+  fixed board, since mines are scarce/contestable the way a generic import isn't.
 
 ---
 
@@ -222,10 +243,22 @@ table: **City, Coast/Islands, Farmlands, Hills**, etc. Each region holds several
   Target rhythm: **bell → burst of movement out → gravitational settle back** to house
   tables/market where the talking happens.
 
-### 6.2 Travel mechanism: carriages 🔶 (shape agreed, magnitudes TBD)
+### 6.2 Travel mechanism: carriages ❓ (not committed — one candidate among options)
 Real physical walking distance won't reliably create meaningful travel time in a smaller
 room, so travel is represented with dedicated components instead of relying on the room's
-actual footprint.
+actual footprint. **This whole carriage/schedule system is explicitly not locked in** —
+Sang flagged it as something he was never fully committed to. Kept below as a live option
+rather than deleted, but don't treat any of it as settled.
+
+- **Live alternative, possibly simpler:** just flip your own sand timer whenever you
+  personally choose to travel — no public/private split, no shared-clock schedule, no ducat
+  toll. This still delivers the one thing that actually matters (real, physical,
+  unbypassable time, self-enforcing via the timer) without the scheduling machinery below.
+  It also sidesteps the City-hub-convergence problem the scheduled version creates in the
+  first place (§6.1) — if nobody's waiting on a shared departure moment, nobody converges on
+  one. Confirmed as the leading direction for the (still-undocumented) Eastern trade-route
+  concept discussed in session, and plausibly the right call for the domestic regions too,
+  but not yet decided there.
 
 - **Public carriage** ✅: each region has its own carriage running a fixed schedule keyed to
   the shared room clock (the same big clock that counts up the season) — e.g. departs on the
@@ -246,6 +279,64 @@ actual footprint.
 - Private-carriage ducats are paid **to the bank** (a pure toll/sink), same treatment as the
   Project-attendance ducat (§11 Tier 1) — consistent, and prevents convenience purchases from
   quietly becoming a way to escape the clamp.
+
+### 6.3 The East — foreign trade routes ✅ (shape locked, magnitudes TBD)
+A way to acquire genuinely foreign goods (raw Silk, Spices, Sugar, Gems) as real production
+rather than only through the flat Foreign Merchants backstop (§4.6).
+
+- **Auctioned like land, developed like an estate** ✅: the Auction (§5) sells "trade route"
+  lots the same way it sells raw land (§4.2/rationale §S) — a house wins the *opportunity*,
+  then *develops* it by **permanently committing built Ships** (instead of the usual
+  ducats+goods development spend). Once committed, the route produces its good every season
+  like any other estate.
+- **No reclaiming committed ships** ✅: ships locked into a route can't be pulled back out to
+  liquid status — that spend is consumed into the asset, the same way estate-development
+  spend doesn't "un-develop." The only exit is **selling the whole package** (route + its
+  committed ships) to another house, mirroring how a developed estate can be resold.
+- **Has its own physical table** ✅: unlike domestic regions, the East's table placement
+  *does* matter, because the point isn't distance — it's transit length. Committed ships sit
+  visibly on the trade-route card (ownership + investment level, at a glance, no Control
+  needed to verify).
+- **No shared schedule — you leave whenever you want** ✅: it's your ship and your route, so
+  there's no public/private carriage distinction here. Just flip the sand timer(s) whenever
+  you choose to go — **a longer sequence than domestic trips** (a couple of flips, representing
+  a real Levant voyage), still just the timer-only travel model, not the (uncommitted)
+  carriage/schedule system.
+- **Social isolation while there** ✅: players at the East table can only talk to whoever
+  else is physically there — cut off from the rest of the room's negotiation for the
+  duration. A deliberate use of physical space to create a real strategic tradeoff (§J), not
+  a punishment — mitigated by houses sending a specific representative rather than their
+  whole team going dark. Naturally means only houses with people to spare can run this
+  strategy comfortably (historically apt — only big trading houses ran months-long
+  Levant voyages).
+- **The cost is the crowd control** ✅: because visiting is expensive in time and
+  isolating socially, nobody floods the East casually — only houses with a genuinely good
+  reason go. One mechanism (the transit cost) does double duty: it's both what makes a
+  visit meaningful *and* what prevents the table from becoming a bottleneck. No separate
+  crowd-control rule needed.
+- **Separate from one-off risky voyages** ✅: *routine* collection from an already-committed
+  route is self-service and safe-but-costly (no Control, just the timer). A standalone risky
+  voyage — Control-adjudicated, a die roll, Tier 2 Renown (§11) — is a different action you'd
+  take when you *don't* have an established route yet, or want to gamble instead of invest.
+- 🔶 **Possible later addition**: a Control-run or player-occupied "foreign trade
+  representative" at the East table — directly maps onto the already-named "Foreign
+  Ambassador" later-module special role (§11.5). Whether this is a full special role now or a
+  lighter Control presence (like the Auction's dedicated auctioneer, §5) is undecided —
+  moving up a "later module" early is a deliberate choice, not a default.
+
+### 6.4 Ships ✅ (a finished good, not a persistent tracked asset with its own systems)
+- **Built from Timber + Hemp + ducats** at a City Industry estate (the historical Arsenal was
+  literally in Venice, fed by Terraferma timber) — the same multi-input recipe pattern as
+  Glass, not a novel exception.
+- **Two jobs, one resource:** committed permanently to a East trade route (§6.3, safe/steady),
+  or spent one-off on a risky voyage (Tier 2 Renown, Control-adjudicated) or a naval/threat-
+  defense contribution (§9 — the exact resource cost of any given threat is a **content-level
+  choice per event card**, not a universal rule; some threats may want Timber+Hemp+ducats,
+  others may just want ducats for mercenaries).
+- **No dedicated market category** ✅: a Ship is consumed directly when spent, or — if a house
+  builds more than it needs — sold hand-to-hand to another house via ordinary player trade
+  (§4.5). No auction lot, no price track, no new machinery; a shipbuilding-focused house is a
+  viable niche using mechanics that already exist.
 
 ---
 
@@ -375,6 +466,26 @@ sitting on ducats; converting is a public act that paints a target).
     City table becomes a visible, ever-growing skyline running in parallel with the Renown
     leaderboard, the same self-enforcing-physical-component logic as tapped estates and the
     sand-timer carriages.
+  - **Monuments produce Renown every season, gated by upkeep** ✅: a completed monument-tier
+    Plot (cathedral, grand civic building, etc.) doesn't just pay out once — it keeps paying
+    a **small, reliable Renown trickle each season**, as long as it's fed a recurring resource
+    cost (e.g. a cathedral needs Wine — communion — every upkeep). This reuses the *exact*
+    same clamp already governing estates (§4.3): an unfed monument simply produces no Renown
+    that season, same forgiving failure state as an unfed estate, no further penalty.
+    - **This is deliberately a risk ladder, not a flat rule** 🔶: cheaper monuments (a Statue)
+      need no upkeep but only ever produce a small flat amount (e.g. 1 Renown/season, no way
+      to boost it); expensive ones (a Cathedral) need real recurring upkeep in exchange for a
+      larger, more reliable trickle. Bigger investment = bigger commitment = bigger payoff,
+      but also a bigger target.
+    - **Why upkeep-gating instead of a flat passive trickle:** every other Renown source in
+      the game is one-time/per-action; an unconditional recurring trickle would be the first
+      passive-income source and risks recreating the exact "same house leads season 2→end"
+      failure state decay (§3.1) exists to prevent — whoever builds earliest just compounds
+      forever. Gating it behind a recurring cost turns the monument into an **attackable
+      target**: rivals can flood/monopolize/withhold the specific good it needs (the same
+      "flood a market to harm a rival" principle already decided for Food, §D) to choke its
+      supply. The anti-runaway pressure comes from players aiming economic warfare at each
+      other, not a rule capping the mechanic — consistent with §P.2.
   - Example — **"throw a fancy party":** pay silver for staff + wine + a luxury food item;
     reward may get a **bonus if other houses' members show up** to role-play the event.
   - **Guest incentive** ✅ (resolves prior open question): attending costs the representative
@@ -402,6 +513,15 @@ sitting on ducats; converting is a public act that paints a target).
 Amount depends on how an uncertain event resolved. Only attach to things that *already*
 route through Control (so no new queue): crisis/pirate defense, risky voyages, crusades
 (later). The Renown result rides along on a die roll Control was making anyway.
+
+- **Noble missions** ✅: send a representative, Control resolves a die roll — success yields
+  a rare Luxury Food (and maybe a small Renown bump for the trophy/feast value), failure
+  yields nothing. Two, both historically grounded as explicitly aristocratic pursuits, not
+  routine gathering:
+  - **Hunting** (Mountains/Woodlands) → **Wild Game** (content/resources.md — merged
+    venison/boar into one token).
+  - **A special fishing expedition**, distinct from routine lagoon Fish (Coast/Islands) →
+    **Rare Catch** (merged sturgeon/caviar/clams/etc.).
 
 ### Tier 3 — Negotiated / discretionary → handled by Special Roles ✅
 Made **diegetic** by giving the award to an in-fiction actor with an agenda, whom players
@@ -465,6 +585,16 @@ run themselves and lighten Control.
 7. **Individual goals & house histories/grudges:** seed richly so season 1 has immediate
    motion. Individual goals should sometimes cut against the house's collective interest.
    Grudges seeded asymmetrically. (Framework agreed; content TBD.)
+8. **Travel mechanism itself** (§6.2): whether the domestic carriage/schedule system is used
+   at all, or travel is just a personal sand timer flipped whenever a player chooses to go
+   (the leading alternative) — explicitly not committed, unlike almost everything else in
+   this doc.
+9. **Two small commons-gathering mechanics** (`content/resources.md` §3.3): whether Stone's
+   mining slots refill mid-season (a queue) or are claimed once per season (a land-grab);
+   whether harvesting time scales with quantity gathered or is flat per visit.
+10. **The East's foreign trade representative** (§6.3): floated as a possible later addition
+    mapping onto the already-named "Foreign Ambassador" special role (§11.5) — full special
+    role now, a lighter Control presence, or deferred entirely, is undecided.
 
 ---
 
@@ -486,6 +616,24 @@ run themselves and lighten Control.
   published guardrails; own Renown pool + unique rewards. ✅
 - Project guest incentive: attending costs 1 ducat (spent to bank) for +1 Renown;
   self-service via token deposit; host gets a threshold-based bonus (amount TBD). ✅
-- Travel: public carriages free on a shared-clock schedule; private carriages cost a
-  ducat to skip the wait, but never skip the sand-timer transit itself. ✅ (shape)
-- Design philosophy: minimal Control, self-policing, systemic clamps, ship core first. ✅
+- Travel: represented by a sand timer (unbypassable, physical) either way. ✅ Whether it's
+  wrapped in a scheduled public/private-carriage system (❓ not committed, §6.2) or just a
+  timer flipped whenever a player chooses to go (leading alternative) is still open.
+- Monuments produce recurring per-season Renown, gated by upkeep (a required good each
+  season, or it just doesn't produce that turn) — deliberately a risk ladder (cheap/
+  no-upkeep/flat-small vs. expensive/upkeep/larger-but-attackable). ✅
+- City land: three strictly separate categories — **estates** (production only), **plots**
+  (auctioned Renown-Project sites, 3D-printed model on completion), each house's own
+  **palazzo** (residence/storage, not auctioned). ✅
+- **The East**: trade routes auctioned like land, developed by permanently committing built
+  Ships (no reclaiming, only reselling the whole package); has a physical table, no shared
+  schedule (leave whenever), longer transit, social isolation while there. ✅
+- **Ships**: built from Timber+Hemp+ducats at a City Industry estate; consumed for voyages/
+  defense/route-commitment, or traded hand-to-hand; no dedicated market category. ✅
+- **Resources** (full roster in `content/resources.md`): heavily revised and trimmed —
+  market categories renamed (Textiles, Precious/Mined), Beer moved to Alcohol, Oil moved to
+  Luxury Foods, Timber/Stone/Clay/Silica gathered as unowned "commons materials" with three
+  distinct scarcity mechanics, Northern trade added (Amber/Furs/Cider/Bullion) alongside the
+  East. ✅
+- Design philosophy: minimal Control, self-policing, systemic clamps, ship core first;
+  **stay out of the combat/weapons economy** (see `CLAUDE.md`). ✅

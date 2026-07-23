@@ -88,6 +88,14 @@ resources, estates, regions, layouts, auction lots) and **refining via playtest.
 - **Renown sinks must be gambles, not taxes.** Every place a player spends Renown needs a
   credible path back to *more* Renown, or it feels like a penalty. Always ask "what's the
   path back to more renown from this spend?"
+- **Stay out of the combat/weapons economy.** Sang wants this to be cut-throat *economics
+  and politics*, not street violence. The existing assassination/dueling/theft special-action
+  family (§10) stays exactly as abstracted as it already is — a flat spend, Control resolves
+  it privately with a die and a result slip, no crafting involved. Don't build a
+  resource-production layer feeding combat (tools/weapons/armor chains) — if military-
+  adjacent content ever gets built, it's a later-module conversation, not a base-game
+  resource-chain expansion. (Surfaced when Iron was floated as a resource — declined for
+  this reason among others.)
 
 ---
 

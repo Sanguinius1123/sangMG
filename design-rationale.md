@@ -491,6 +491,16 @@ watching in playtest.
 
 ## R. Travel: splitting transit time (unbuyable) from wait time (buyable)
 
+**Status: not committed.** Sang flagged this whole carriage/schedule system as something he
+was never fully bought into, and it's kept below as a documented option rather than deleted.
+The leading alternative — just flip a personal sand timer whenever you choose to travel, no
+schedule, no ducat toll, no public/private split — delivers the one property that actually
+mattered (unbypassable, physical, self-enforcing time) without the scheduling layer, and
+incidentally dissolves the City-hub-convergence problem this section spends a lot of words
+mitigating, since that problem only exists *because* departures are synchronized to a shared
+clock. If nobody's waiting on a shared moment, nobody converges on one. Read the rest of this
+entry as "the reasoning behind one candidate," not "the reasoning behind the decision."
+
 **Decision.** Travel to a region is represented by dedicated components rather than real
 room footprint (the play space isn't large enough for walking distance alone to create
 meaningful travel time). Each region runs a **public carriage** on a fixed schedule keyed to
@@ -604,4 +614,154 @@ watches Venice get built over the course of the day. Purely a production/craft c
 mechanical risk.
 
 **Open naming question.** What to call the house's own City residence — floated options
-include *Palazzo* (period-appropriate, evocative) — is still unresolved.
+include *Palazzo* (period-appropriate, evocative) — is still unresolved. (Since resolved:
+Palazzo.)
+
+---
+
+## T. Monuments produce recurring Renown, gated by upkeep
+
+**Decision.** A completed monument-tier Plot (cathedral, grand civic building) produces a
+**small Renown trickle every season**, not just a one-time payout — but only if fed a
+recurring resource cost each upkeep (e.g. a cathedral needs Wine). An unfed monument simply
+produces nothing that season, mirroring an unfed estate (§4.3) exactly — no harsher penalty.
+Cheaper monuments (a Statue) need no upkeep but only ever produce a small flat amount with no
+way to increase it; expensive ones (a Cathedral) need real recurring upkeep for a larger,
+more reliable trickle. This is a deliberate risk ladder: bigger investment, bigger commitment,
+bigger payoff, bigger target.
+
+**Reasoning.** Every other Renown source in the design is one-time or per-action — sell/
+donate a good, complete a Project, win a voyage, host a party. An *unconditional* recurring
+trickle would have been the first passive-income source in the game, and passive, compounding
+income is structurally the shape most likely to produce exactly the failure state progressive
+decay (§B) exists to prevent: whoever builds earliest just keeps pulling ahead every
+subsequent season, with the gap widening rather than closing, regardless of what anyone else
+does. The fix isn't to cut the recurring-Renown idea (it's thematically strong — a completed
+cathedral *should* matter for the rest of the day, not just the turn it's built) but to make
+it **conditional and attackable** rather than free.
+
+**Why upkeep-gating specifically, rather than some other cap.** It costs nothing new to
+design — it's the exact same clamp already governing every estate in the game (§4.3: unfed
+estates simply don't produce). A monument becomes, mechanically, just another thing that needs
+feeding, with its own recipe instead of Food. That keeps it fully self-service, zero Control,
+consistent with everything else. More importantly, it turns a leading house's monument into a
+**concrete, actionable target** for rivals: buy up the good it needs, monopolize it, refuse to
+sell it directly — the exact same "flood a market to harm a rival" principle already decided
+and embraced for Food (§D, "flooding a food market to harm a food-focused rival is an intended,
+interesting mechanic"). The anti-runaway pressure on monument income comes from **players
+aiming economic warfare at each other**, not a rule capping the number — consistent with the
+meta-principle that clamps players aim at each other read as politics, while clamps the rules
+apply read as rubber-banding (§P.2).
+
+**What to watch.** The per-season trickle amount is, more than any other magnitude in the
+game, the one to get right — it needs to be reliably smaller than a typical single season's
+Renown swing, not comparable to it, or the compounding problem returns despite the upkeep
+gate softening it. Also watch whether the upkeep-good markets (Wine, etc.) actually see real
+sabotage play in practice, or whether rivals find it easier to just ignore a leader's monument
+than to fight over its supply chain — if nobody bothers attacking it, the upkeep gate is
+providing less protection than intended.
+
+---
+
+## U. The East: trade routes as developed land, not a new ownership model
+
+**Decision.** The Auction sells "trade route" lots the same way it sells raw land (§S) — a
+house wins the opportunity, then develops it by permanently committing built Ships instead of
+the usual ducats+goods spend. Committed ships can't be reclaimed, only the whole package
+(route + ships) resold. The East has its own physical table (transit length matters here,
+unlike domestic regions), no shared schedule (leave whenever, since it's your own ship), a
+longer sand-timer sequence than domestic trips, and — the standout feature — players there can
+only talk to whoever else is physically at that table, cut off from the rest of the room for
+the duration.
+
+**Reasoning.** This resolves "how do houses get genuinely foreign goods as real production,
+not just the flat Foreign Merchants rate" without inventing new machinery — it's the land/
+developed-estate auction split (§S) and the development-spend concept (§4.2) both reused, just
+with Ships standing in for the usual development cost. The social-isolation rule is the
+regional-tables philosophy (§J) doing exactly its job: real physical space creating a genuine
+strategic tradeoff (your envoy isn't part of whatever's brewing at home right now) instead of
+being a number on a card.
+
+**Why no reclaiming ships.** Committing them needed to carry real weight, or the route become
+a strictly-better version of developing ordinary land (guaranteed income, no downside). Making
+the commitment permanent — sellable as a package, never un-invested — keeps it a genuine,
+weighty decision rather than a reversible toggle.
+
+**Why the East doesn't use the (uncommitted) domestic carriage/schedule system.** It's the
+house's own ship and route; a scheduled "convoy to Alexandria departs every even minute"
+doesn't track the way a local ferry might. Flip the timer whenever you choose to go — simpler
+than the domestic model, not more complex.
+
+**What to watch.** (1) The time-and-isolation cost is doing double duty — it's both what makes
+a visit meaningful and what prevents the table from becoming a bottleneck ("only houses with a
+genuinely good reason go," no separate crowd-control rule needed) — confirm in playtest that
+this actually holds and the East doesn't sit either empty or overcrowded. (2) This is
+structurally a rich-house strategy: only houses with enough people to spare one for an
+extended, isolating trip can run it without giving up domestic presence. Historically apt
+(only big trading houses ran months-long Levant voyages), but worth watching that it reads as
+"a rich-house strategy" rather than "currently uninteractable if you're not big."
+
+---
+
+## V. Ships: a finished good, not a persistent tracked asset
+
+**Decision.** Ships are built from Timber + Hemp + ducats at a City Industry estate (the
+Arsenal was, historically, literally in Venice). They have two jobs off one resource:
+committed permanently to an East trade route (§U, safe/steady), or spent one-off on a risky
+voyage (Tier 2 Renown) or a naval/threat-defense contribution (§9). No dedicated market
+category — a Ship is consumed directly, or sold hand-to-hand (§4.5) if a house builds more
+than it needs.
+
+**Reasoning.** Two questions came up when this was first proposed: is a Ship a one-time
+consumable or a persistent asset, and does it need its own market? Both resolve the same
+way — by *not* inventing a new asset class. Treating Ship as an ordinary finished good (like
+Wine or Cloth) means it inherits everything finished goods already do: it can be held, spent,
+or traded (§4.5) without a new tracked-ownership system, without a price ladder, without
+Control. "Many options" (use it yourself, or sell it) falls out for free rather than needing a
+bespoke rule.
+
+**Why Timber+Hemp, not a single input.** A two-ingredient recipe isn't a new pattern — Glass
+(Silica + a flat ducat cost standing in for soda ash) already set the precedent. Timber gives
+Ships their utility identity (alongside Furniture, estate upgrades); Hemp is naval-specific
+enough (historically, rope/rigging for the Arsenal, not general cloth) that it earns a
+distinct role rather than just being a fourth generic Textile.
+
+---
+
+## W. The resource trim pass: why so much got cut
+
+**Decision.** After a long resource-generation session that deliberately prioritized richness
+(historical grounding, variety-bonus texture, flexible multi-use goods), a hard trim pass
+reversed course on several additions: Poultry+Pork+Beef → **Meat**; Venison+Boar → **Wild
+Game**; Caviar+Clams+misc. → **Rare Catch**; Gold+Silver+Copper → **Bullion** (no token —
+Mines just yield ducats); Soda Ash dropped from Glass's recipe entirely (folded into a ducat
+cost); Iron considered and declined outright.
+
+**Reasoning.** The original design principle (§4.1: "keep resource count low") was
+consciously relaxed earlier in the session because Sang wanted richness and was explicit
+about trading historical strictness for fun. But richness without a filter produces bloat —
+by the time the full list was compiled, it had drifted well past a dozen kinds into the
+twenties, with several items doing genuinely identical mechanical jobs (three meats behaving
+identically; two metals with no distinct use; three separate "mission-only rare food"
+tokens). The filter applied on the trim pass: **does this item do something its neighbor
+doesn't?** If not, merge. This isn't a reversal of the richness decision, it's the other half
+of it — richness earns its keep item by item, not automatically.
+
+**Why Bullion specifically (Gold/Silver/Copper → ducats, no token) is the biggest cut, and
+why it's safe.** Precious metals were the one place a literal token risked colliding with the
+game's actual currency (ducats), since thematically they're "the same thing." Making a Mine
+just yield ducats directly sidesteps the confusion entirely rather than needing a rule to
+manage it, and conveniently gave the metals a real geographic home they'd been missing
+(Northern trade, §T's Foreign Merchants update) in the same stroke. The one real cost: it
+drops the "mint your own coin, risk inflation" texture that was floated earlier as an
+interesting idea for Gold/Silver specifically — accepted as a fair trade for the
+simplification, not an oversight.
+
+**Why the commons-material scarcity split (Timber/Stone/Clay) survived the trim instead of
+being simplified to one rule.** Unlike the merges above, these three aren't redundant with
+each other — each does a different job (Timber=utility, Stone=prestige, Clay=craft) and, more
+importantly, each uses a **different, physically distinct scarcity mechanic** (a depleting
+seasonal pool; a fixed number of concurrent slots; no cap but worse efficiency) rather than
+one generic rule with three numbers plugged in. That's the same taste that runs through the
+rest of the design — prefer a physical, visible component over an abstract rule wherever one
+is available — so it earned its complexity rather than spending it.
